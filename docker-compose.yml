@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  goravel:
+    network_mode: "host"
+    build:
+      context: .
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      MYSQL_DATABASE: goravel
+      MYSQL_USER: goravel
+      MYSQL_PASSWORD: goravel
+      MYSQL_ROOT_PASSWORD: goravel
+      MYSQL_TCP_PORT: 3307
+    ports:
+      - "3307:3307"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    restart: always
+
+  mysql2:
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      MYSQL_DATABASE: goravel2
+      MYSQL_USER: goravel2
+      MYSQL_PASSWORD: goravel2
+      MYSQL_ROOT_PASSWORD: goravel2
+      MYSQL_TCP_PORT: 3308
+    ports:
+      - "3308:3308"
+    volumes:
+      - ./docker/mysql2:/var/lib/mysql
+    restart: always
